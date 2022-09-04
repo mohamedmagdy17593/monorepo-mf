@@ -1,0 +1,11 @@
+{
+  "name": "mf-example",
+  "private": true,
+  "scripts": {},
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "libs/*"
+    ]
+  }
+}
