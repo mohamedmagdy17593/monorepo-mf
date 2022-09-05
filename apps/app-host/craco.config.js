@@ -1,5 +1,26 @@
 const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies;
+const mfConfig = require('../../mf-config.json');
+
+function getMfModeReMote(name) {
+  let remoteEntry = '';
+
+  // in production env
+  if (process.env.NODE_ENV === 'production') {
+    remoteEntry = mfConfig.remote[name].prod;
+  } else if (mfConfig.dev === '*') {
+    remoteEntry = mfConfig.remote[name].dev;
+  } else {
+    remoteEntry =
+      mfConfig.dev === name
+        ? mfConfig.remote[name].dev
+        : mfConfig.remote[name].prod;
+  }
+
+  console.log(`remote for "${name}" : `, remoteEntry);
+
+  return remoteEntry;
+}
 
 module.exports = () => {
   return {
@@ -15,14 +36,8 @@ module.exports = () => {
             name: 'app-host',
             filename: 'remoteEntry.js',
             remotes: {
-              inputs:
-                process.env.NODE_ENV === 'production'
-                  ? 'inputs@https://monorepo-mf.vercel.app/inputs/remoteEntry.js'
-                  : 'inputs@http://localhost:3001/remoteEntry.js',
-              result:
-                process.env.NODE_ENV === 'production'
-                  ? 'result@https://monorepo-mf.vercel.app/result/remoteEntry.js'
-                  : 'result@http://localhost:3002/remoteEntry.js',
+              inputs: getMfModeReMote('inputs'),
+              result: getMfModeReMote('result'),
             },
             shared: {
               ...deps,
