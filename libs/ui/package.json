@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsup src",
     "dev": "tsup src --watch",
-    "prepare": "pnpm build --unsafe-perm"
+    "prepare": "pnpm build",
+    "postinstall": "pnpm build"
   },
   "peerDependencies": {
     "react": "^18.0.0",
