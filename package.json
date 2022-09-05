@@ -1,15 +1,21 @@
 {
   "name": "mf-example",
   "private": true,
-  "scripts": {},
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "libs/*"
-    ]
+  "scripts": {
+    "start:host": "cd apps/app-host && pnpm start",
+    "start:inputs": "cd apps/inputs && pnpm start",
+    "start:result": "cd apps/result && pnpm start",
+    "start": "concurrently --kill-others \"pnpm start:host\" \"pnpm start:inputs\" \"pnpm start:result\"",
+    "build": "node ./scripts/build",
+    "serve": "PORT=5000 serve ./build"
   },
   "devDependencies": {
+    "chalk": "^4.1.2",
+    "concurrently": "^7.3.0",
+    "fs-extra": "^10.1.0",
+    "serve": "^14.0.1",
     "tsup": "^6.2.3",
     "typescript": "^4.8.2"
-  }
+  },
+  "packageManager": "pnpm@7.9.0"
 }

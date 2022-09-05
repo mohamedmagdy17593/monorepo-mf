@@ -15,8 +15,14 @@ module.exports = () => {
             name: 'app-host',
             filename: 'remoteEntry.js',
             remotes: {
-              inputs: 'inputs@http://localhost:3001/remoteEntry.js',
-              result: 'result@http://localhost:3002/remoteEntry.js',
+              inputs:
+                process.env.NODE_ENV === 'production'
+                  ? 'inputs@http://localhost:5000/inputs/remoteEntry.js'
+                  : 'inputs@http://localhost:3001/remoteEntry.js',
+              result:
+                process.env.NODE_ENV === 'production'
+                  ? 'result@http://localhost:5000/result/remoteEntry.js'
+                  : 'result@http://localhost:3002/remoteEntry.js',
             },
             shared: {
               ...deps,
