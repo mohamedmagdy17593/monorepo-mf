@@ -11,8 +11,7 @@
   "scripts": {
     "build": "tsup src",
     "dev": "tsup src --watch",
-    "prepare": "pnpm build",
-    "postinstall": "pnpm build"
+    "prepare": "pnpm build"
   },
   "author": "",
   "license": "ISC"

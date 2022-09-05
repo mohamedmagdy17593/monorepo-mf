@@ -17,11 +17,11 @@ module.exports = () => {
             remotes: {
               inputs:
                 process.env.NODE_ENV === 'production'
-                  ? 'inputs@http://localhost:5000/inputs/remoteEntry.js'
+                  ? 'inputs@https://monorepo-mf.vercel.app/inputs/remoteEntry.js'
                   : 'inputs@http://localhost:3001/remoteEntry.js',
               result:
                 process.env.NODE_ENV === 'production'
-                  ? 'result@http://localhost:5000/result/remoteEntry.js'
+                  ? 'result@https://monorepo-mf.vercel.app/result/remoteEntry.js'
                   : 'result@http://localhost:3002/remoteEntry.js',
             },
             shared: {
