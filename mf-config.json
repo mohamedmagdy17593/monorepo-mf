@@ -3,11 +3,11 @@
   "remote": {
     "inputs": {
       "dev": "inputs@http://localhost:3001/remoteEntry.js",
-      "prod": "inputs@https://monorepo-mf.vercel.app/inputs/remoteEntry.js"
+      "prod": "inputs@/inputs/remoteEntry.js"
     },
     "result": {
       "dev": "result@http://localhost:3002/remoteEntry.js",
-      "prod": "result@https://monorepo-mf.vercel.app/result/remoteEntry.js"
+      "prod": "result@/result/remoteEntry.js"
     }
   }
 }
